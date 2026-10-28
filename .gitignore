@@ -164,3 +164,13 @@ cython_debug/
 .idea/
 
 fb.json
+.chrome-profile/
+fb_all.json
+run*.log
+*.jsonl
+data/
+logs/
+.env
+publisher/state.json
+publisher/cards/
+publisher/publish.log

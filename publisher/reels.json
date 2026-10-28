@@ -1,0 +1,198 @@
+[
+  {
+    "id": "r01",
+    "status": "Draft (hold)",
+    "slot": "Mon 2 Nov",
+    "topic": "7 sentences every new mother hears (companion to post p01)",
+    "hook": "جمل تسمعها كل أم جديدة",
+    "beats": [
+      {
+        "text": "ولدك يبكي بزاف، جايع أكيد!",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. the Algerian mother (early 30s, warm brown eyes, dark wavy hair loosely tied back, soft cream cardigan over a rose-coloured top) gently swaying with her baby (soft dark hair, wrapped in a cream blanket) who cries softly, warm living room, morning window light, slow push-in. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "ما تحمليهش بزاف باش ما يتعودش",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. the Algerian mother (early 30s, warm brown eyes, dark wavy hair loosely tied back, soft cream cardigan over a rose-coloured top) looking down lovingly at her baby (soft dark hair, wrapped in a cream blanket) asleep on her chest in an armchair, slow orbit around them. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "أنا في وقتي ما درتش هكا",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. close-up of the Algerian mother (early 30s, warm brown eyes, dark wavy hair loosely tied back, soft cream cardigan over a rose-coloured top)'s hand holding her baby (soft dark hair, wrapped in a cream blanket)'s tiny hand on a woven blanket, slow tilt up to her calm smile. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      }
+    ],
+    "closing": "نتي أي جملة سمعتيها بزاف؟",
+    "caption": "هدرات تسمعهم كل أم جديدة 🙈\nو الجواب الهادي؟ \"أنا و وليدي نعرفو بعضنا، يعطيك الصحة\" 🤍\nنتي واش من هدرة سمعتيها بزاف؟ كتبيها في الكومنتير.",
+    "review": false,
+    "claude_caption": "جمل تسمعها كل أم جديدة 🙈\nو الجواب الهادي؟ \"أنا و ولدي نعرفو بعضانا، يعطيك الصحة\" 🤍\nنتي أي جملة سمعتيها بزاف؟ كتبيها في الكومنتير.",
+    "caption_source": "Gemini 3",
+    "post": "p01",
+    "stock": [
+      {
+        "id": 79155,
+        "start": 2.0,
+        "pos": 0.43,
+        "url": "https://cdn.pixabay.com/video/2021/06/27/79155-568265335_large.mp4",
+        "by": "Kathanhero",
+        "page": "https://pixabay.com/videos/id-79155/"
+      },
+      {
+        "id": 304230,
+        "start": 3.0,
+        "pos": 0.53,
+        "url": "https://cdn.pixabay.com/video/2025/09/15/304230_large.mp4",
+        "by": "Aryan821102",
+        "page": "https://pixabay.com/videos/id-304230/"
+      },
+      {
+        "id": 115458,
+        "start": 2.0,
+        "pos": 0.45,
+        "url": "https://cdn.pixabay.com/video/2022/04/29/115458-704757070_large.mp4",
+        "by": "Randimaz",
+        "page": "https://pixabay.com/videos/id-115458/"
+      }
+    ]
+  },
+  {
+    "id": "r02",
+    "status": "Draft (hold)",
+    "slot": "Fri 6 Nov",
+    "topic": "Every child has his own clock (companion to post p02)",
+    "hook": "ما راكيش تأخرتي 🤍",
+    "beats": [
+      {
+        "text": "كل طفل عندو ساعتو",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. her curly-haired toddler of about 2 (sage-green top) taking first wobbly steps across a sunny tiled room towards the camera, slow tracking shot moving backwards. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "المشي، الهدرة، الأسنان…",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. close-up of a baby's open smile showing a first tooth while the mother's finger gently touches the cheek, slow push-in. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "يوصل ملي يكون جاهز",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. wide shot of a bright playroom with three small children at different stages (a crawling baby, a standing toddler, a walking child), slow pan. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      }
+    ],
+    "closing": "نتي في أي عمر مشى ولدك؟",
+    "caption": "ما راكيش تأخرتي 🤍\nالمشي، الهدرة، الأسنان… كل طفل عندو ساعتو.\nنتي في أي عمر مشى ولدك؟",
+    "review": false
+  },
+  {
+    "id": "r03",
+    "status": "Draft (hold)",
+    "slot": "Mon 9 Nov",
+    "topic": "For the mother awake at 3 am (companion to post p05)",
+    "hook": "للأم لي مازالت فايقة",
+    "beats": [
+      {
+        "text": "راكي تعبانة و هذا صح",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. the Algerian mother (early 30s, warm brown eyes, dark wavy hair loosely tied back, soft cream cardigan over a rose-coloured top) sitting on the edge of a bed at night holding her baby (soft dark hair, wrapped in a cream blanket), dim bedside lamp, slow push-in, tired but tender. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "و راكي تعطي أكثر مما تظني",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. close-up of the Algerian mother (early 30s, warm brown eyes, dark wavy hair loosely tied back, soft cream cardigan over a rose-coloured top)'s hand stroking her baby (soft dark hair, wrapped in a cream blanket)'s back gently, warm lamp light, slow drift. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "هاد الليالي تدوز",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. a window where the first dawn light slowly brightens over rooftops, a mother's silhouette holding a baby, slow upward tilt. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      }
+    ],
+    "closing": "ربي يعاونك 🤍",
+    "caption": "للأم لي مازالت سهرانة على 3 تاع الصباح 🌙\nراكي تعبانة و هذا صح، و راكي تعطي أكثر مما تظني.\nربي يعاونك 🤍",
+    "review": false
+  },
+  {
+    "id": "r04",
+    "status": "Draft (hold)",
+    "slot": "Fri 13 Nov",
+    "topic": "Messy house, happy child (companion to post p09)",
+    "hook": "دار مقلوبة؟",
+    "beats": [
+      {
+        "text": "الماعن تقدر تستنى",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. a kitchen sink with a few unwashed dishes, the camera slowly pulling back to reveal a toddler laughing in the next room, shallow focus. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "الضحكة ما تستناش",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. her curly-haired toddler of about 2 (sage-green top) laughing and tossing soft toys in the air on a patterned tile floor, slow motion, soft morning light. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "راكي في بلاصتك الصح",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. the Algerian mother (early 30s, warm brown eyes, dark wavy hair loosely tied back, soft cream cardigan over a rose-coloured top) smiling as she sits down on the floor among the toys and picks up her curly-haired toddler of about 2 (sage-green top), slow orbit. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      }
+    ],
+    "closing": "واش هي الحاجة لي مقلوبة في دارك دروك؟",
+    "caption": "دار مقلوبة و ولد فرحان، أحسن من دار نقية و أم تعبانة 🏠🤍\nواش هي الحاجة لي مقلوبة في دارك دروك؟",
+    "review": false
+  },
+  {
+    "id": "r05",
+    "status": "Draft (hold)",
+    "slot": "Mon 16 Nov",
+    "topic": "8 things for the maternity bag (companion to post p08)",
+    "hook": "8 حوايج لساك السبيطار",
+    "beats": [
+      {
+        "text": "شارجور طويل للتيليفون",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. top-down view of hands placing a long phone charger cable into an open maternity bag on a cream surface, soft light. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "مخدة صغيرة ليك",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. top-down: hands placing a small cushion and soft slippers into the bag, slow slide. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "قميجة مفتوحة للرضاعة",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. top-down: hands folding a soft front-open nightgown in rose tone and placing it in the bag. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "و 5 حوايج أخرى في البوست",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. top-down: the bag closing slowly with a gentle zip, hands resting on it, slow pull-back. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      }
+    ],
+    "closing": "شاركيها مع صاحبتك لي قريب تولد",
+    "caption": "8 حوايج دخليهم في ساك السبيطار و ما يقولهالك حد 👜\nالقايمة كاملة في البوست. شاركيها مع صاحبتك لي قريب تولد 🤍",
+    "review": false
+  },
+  {
+    "id": "r06",
+    "status": "Draft (hold)",
+    "slot": "Fri 20 Nov",
+    "topic": "A word for fathers (companion to post p10)",
+    "hook": "كلمة للأب",
+    "beats": [
+      {
+        "text": "حضر الماكلة بلا ما تطلب",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. the Algerian father (mid-30s, short dark hair, short beard, clay-brown shirt) setting a plate and a tea glass on a table in a tidy kitchen, morning light, slow dolly. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "خذ البيبي ساعة و خليها ترقد",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. the Algerian father (mid-30s, short dark hair, short beard, clay-brown shirt) gently carrying her baby (soft dark hair, wrapped in a cream blanket) on his shoulder in the living room while the Algerian mother (early 30s, warm brown eyes, dark wavy hair loosely tied back, soft cream cardigan over a rose-coloured top) rests on the sofa, slow orbit. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      },
+      {
+        "text": "قولها: راكي تديري مليح",
+        "clip_prompt": "Vertical 9:16 video, 6 seconds. close-up of the Algerian mother (early 30s, warm brown eyes, dark wavy hair loosely tied back, soft cream cardigan over a rose-coloured top) smiling softly with closed eyes as the Algerian father (mid-30s, short dark hair, short beard, clay-brown shirt) lays a warm blanket over her, slow push-in. Soft natural light, calm warm palette of cream #FBF6EE, blush #F6DCE0, rose #B85C72 and clay brown. Smooth slow camera move. No speech, no on-screen text, no logos, no watermarks.",
+        "file": null
+      }
+    ],
+    "closing": "شاركيها لبابا تاع ولدك",
+    "caption": "كلمة للأب 👨‍👧 4 حوايج صغار تبدل أسبوع الأم الجديدة. شاركيها لبابا تاع ولدك (بلا كلام) 🤍",
+    "review": false
+  }
+]

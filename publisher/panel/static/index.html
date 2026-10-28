@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#B85C72">
+<title>أنا و وليدي — Panel</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 120 120%27%3E%3Crect width=%27120%27 height=%27120%27 rx=%2726%27 fill=%27%23B85C72%27/%3E%3Cpath d=%27M21 60A40 40 0 0 0 98 64%27 fill=%27none%27 stroke=%27%23FBF6EE%27 stroke-width=%2710%27 stroke-linecap=%27round%27/%3E%3Ccircle cx=%2744%27 cy=%2745%27 r=%2725%27 fill=%27%23FBF6EE%27/%3E%3Ccircle cx=%2779%27 cy=%2761%27 r=%2712.5%27 fill=%27%23FBF6EE%27/%3E%3C/svg%3E">
+<style>
+@font-face{font-family:Marhey;font-weight:300 700;src:url(/static/fonts/marhey-arabic.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC,U+200C-200E}
+@font-face{font-family:Marhey;font-weight:300 700;src:url(/static/fonts/marhey-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F}
+@font-face{font-family:Rubik;font-weight:300 900;src:url(/static/fonts/rubik-arabic.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC}
+:root{--rose:#B85C72;--rose-d:#7E3A4B;--blush:#F6DCE0;--blush-l:#FDF3F5;--sage:#6E9A6A;--sage-l:#EAF2E9;--cream:#FBF6EE;--sand:#F4ECE0;--clay:#7A5240;--clay-d:#3E2A20;--line:#E7DBCA;
+--ok:#3C5E3A;--warn:#B87726;--r:18px;--shadow:0 6px 18px -8px rgba(62,42,32,.25)}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--cream);color:var(--clay-d);font-family:Rubik,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px;line-height:1.5;min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}
+header{position:sticky;top:0;z-index:20;background:var(--cream);border-bottom:1px solid var(--line);padding:10px 16px;padding-top:max(10px,env(safe-area-inset-top))}
+.top{display:flex;align-items:center;gap:10px;max-width:1200px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:8px;font-family:Marhey;font-weight:600;font-size:20px;color:var(--rose-d)}
+.next{margin-inline-start:auto;font-size:12px;color:var(--clay);text-align:end}
+.iconbtn{border:1px solid var(--line);background:#fff;border-radius:12px;width:38px;height:38px;cursor:pointer}
+nav{display:flex;gap:4px;max-width:1200px;margin:8px auto 0;overflow-x:auto;scrollbar-width:none}
+nav button{border:0;background:transparent;padding:8px 14px;border-radius:999px;cursor:pointer;color:var(--clay);font-weight:500;white-space:nowrap}
+nav button.on{background:var(--rose);color:#fff}
+main{max-width:1200px;margin:0 auto;padding:16px}
+h2{font-family:Marhey;color:var(--rose-d);font-size:20px;margin:6px 0 12px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:500;background:var(--sand);color:var(--clay);border:0}
+button.chip{cursor:pointer;padding:6px 12px;font-size:13px}
+button.chip.on{background:var(--rose);color:#fff}
+.chip.published{background:#E7DBCA}.chip.ready{background:var(--sage-l);color:var(--ok)}.chip.held{background:#FBEEDA;color:var(--warn)}.chip.draft{background:#DCE6F5;color:#35507a}
+.chip.med{background:#FBE3DE;color:#7E2B1E}.chip.car{background:var(--blush);color:var(--rose-d)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;cursor:pointer;display:flex;flex-direction:column;border:1px solid var(--line)}
+.card:active{transform:scale(.985)}
+.thumb{aspect-ratio:4/5;background:var(--blush);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.meta{padding:12px;display:flex;flex-direction:column;gap:6px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.title{font-family:Marhey;font-weight:600;color:var(--rose-d);font-size:16px;line-height:1.4}
+.snip{font-size:13px;color:var(--clay);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.thumb.reel{aspect-ratio:9/12;display:flex;align-items:flex-end;justify-content:center;padding:16px;background:linear-gradient(160deg,var(--blush),var(--sand));font-family:Marhey;color:var(--rose-d);font-weight:600;font-size:18px;text-align:center}
+/* modal */
+#modal{position:fixed;inset:0;z-index:50;background:rgba(62,42,32,.5);display:flex;align-items:flex-end;justify-content:center}
+#modal[hidden]{display:none}
+.sheet{background:var(--cream);width:100%;max-width:980px;max-height:96vh;border-radius:22px 22px 0 0;overflow-y:auto;position:relative;padding-bottom:max(24px,env(safe-area-inset-bottom))}
+@media(min-width:900px){#modal{align-items:center}.sheet{border-radius:22px;max-height:92vh}}
+.sheet-head{position:sticky;top:0;z-index:2;background:var(--cream);padding:14px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)}
+.sheet-head h3{font-family:Marhey;color:var(--rose-d);font-size:18px;flex:1}
+.cols{display:grid;gap:18px;padding:18px}
+@media(min-width:900px){.cols{grid-template-columns:340px 1fr}}
+.pv{width:100%;border-radius:16px;box-shadow:var(--shadow);display:block;background:var(--blush)}
+.stack{display:flex;flex-direction:column;gap:14px}
+.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.box h4{font-family:Marhey;color:var(--rose-d);font-size:15px;margin-bottom:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--clay);flex:1;min-width:130px}
+input[type=text],select,textarea{border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#fff;width:100%}
+textarea{min-height:170px;resize:vertical;font-size:15px;line-height:1.7}
+.btn{border:0;border-radius:12px;padding:9px 14px;cursor:pointer;font-weight:500;background:var(--rose);color:#fff}
+.btn.ghost{background:#fff;color:var(--rose-d);border:1px solid var(--line)}
+.btn.sage{background:var(--sage)}.btn.warn{background:var(--warn)}
+.btn:disabled{opacity:.5;cursor:default}
+.flags{margin-top:6px;display:flex;flex-direction:column;gap:4px}
+.flag{background:#FBE3DE;color:#7E2B1E;border-radius:8px;padding:5px 9px;font-size:12.5px}
+.ok{background:var(--sage-l);color:var(--ok);border-radius:8px;padding:5px 9px;font-size:12.5px}
+.opt{border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px;background:#fff}
+.opt.cur{border-color:var(--rose);background:var(--blush-l)}
+.opt pre{white-space:pre-wrap;font-family:inherit;font-size:14px;line-height:1.7}
+.banner{background:#FBEEDA;border:1px solid #E9CF9C;border-radius:12px;padding:10px 12px;color:#6b4710;font-size:13.5px}
+.drop{border:2px dashed var(--rose);border-radius:14px;padding:18px;text-align:center;color:var(--rose-d);background:var(--blush-l);cursor:pointer}
+.drop.over{background:var(--blush)}
+.prompt{background:var(--sand);border-radius:10px;padding:10px;font-size:12.5px;white-space:pre-wrap;max-height:150px;overflow:auto;direction:ltr;text-align:left}
+.slides{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
+.slides img{height:230px;border-radius:10px;flex:none;box-shadow:var(--shadow)}
+details summary{cursor:pointer;color:var(--rose-d);font-weight:500}
+details pre{white-space:pre-wrap;font-family:inherit;margin-top:6px;font-size:13.5px}
+.qrow{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;margin-bottom:8px}
+.qrow img{width:54px;height:68px;object-fit:cover;border-radius:8px}
+.qrow .d{font-weight:600;color:var(--clay);min-width:108px;font-size:13px}
+.qrow .t{flex:1;min-width:0;font-family:Marhey;color:var(--rose-d)}
+@media(max-width:640px){.qrow{flex-wrap:wrap}.qrow .d{flex:1 0 100%;min-width:0;padding:2px 4px;color:var(--rose)}.qrow .t{font-size:14px}}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+td,th{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top}
+th{background:var(--sand);color:var(--clay)}
+tr.reel td{background:var(--blush-l)}
+/* storyboard */
+.story{position:relative;width:100%;max-width:270px;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,var(--blush),var(--sand));margin:0 auto;box-shadow:var(--shadow)}
+.story video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.story .logo{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:34px;opacity:.95;z-index:2}
+.story .ov{position:absolute;left:12px;right:12px;bottom:64px;text-align:center;font-family:Marhey;font-weight:600;color:#fff;font-size:20px;line-height:1.4;text-shadow:0 2px 8px rgba(0,0,0,.55);z-index:2}
+.story .card-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;font-family:Marhey;font-weight:600;color:var(--rose-d);font-size:22px}
+.story .lock{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-family:Marhey;color:#fff;font-size:14px;z-index:2;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.beat{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff;display:flex;flex-direction:column;gap:8px}
+.vid{width:100%;max-width:150px;border-radius:10px;background:#000}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--clay-d);color:#fff;padding:10px 16px;border-radius:12px;z-index:90;font-size:14px;opacity:0;transition:.25s;pointer-events:none;max-width:90vw}
+#toast.show{opacity:1}#toast.err{background:#8a2a1a}
+#login{position:fixed;inset:0;background:var(--cream);z-index:99;display:flex;align-items:center;justify-content:center;padding:24px}
+#login[hidden]{display:none}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:s 1s linear infinite;vertical-align:-2px;margin-inline-end:6px}
+@keyframes s{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="brand"><svg width="30" height="30" viewBox="0 0 120 120"><path d="M21 60A40 40 0 0 0 98 64" fill="none" stroke="#B85C72" stroke-width="10" stroke-linecap="round"/><circle cx="44" cy="45" r="25" fill="#B85C72"/><circle cx="79" cy="61" r="12.5" fill="#B85C72"/></svg><span>أنا و وليدي</span></div>
+    <div class="next" id="next"></div>
+    <button class="iconbtn" id="refresh" title="Refresh">&#x21bb;</button>
+  </div>
+  <nav id="tabs"></nav>
+</header>
+<main id="view"></main>
+<div id="modal" hidden></div>
+<div id="login" hidden>
+  <form class="box" style="max-width:320px;width:100%;text-align:center" id="loginform">
+    <h4 style="font-size:20px">أنا و وليدي</h4><p style="margin:8px 0 14px;color:var(--clay)">Enter the PIN</p>
+    <input type="text" id="pin" inputmode="numeric" autocomplete="off" style="text-align:center;font-size:22px;letter-spacing:6px">
+    <button class="btn" style="margin-top:12px;width:100%">Open</button>
+  </form>
+</div>
+<div id="toast"></div>
+<script>
+const $ = (s, r = document) => r.querySelector(s);
+function h(tag, attrs = {}, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') e.className = v;
+    else if (k === 'style') e.style.cssText = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else if (v === true) e.setAttribute(k, '');
+    else if (v !== false && v != null) e.setAttribute(k, v);
+  }
+  for (const c of kids.flat()) { if (c == null || c === false) continue; e.append(c.nodeType ? c : document.createTextNode(c)); }
+  return e;
+}
+let S = { posts: [], reels: [], queue: [], proposed: [], specs: [] };
+let tab = 'posts', filter = 'all', openId = null;
+
+async function api(path, opts = {}) {
+  const o = { credentials: 'same-origin', ...opts };
+  if (o.body && !(o.body instanceof FormData)) o.headers = { 'Content-Type': 'application/json', ...(o.headers || {}) };
+  const r = await fetch(path, o);
+  if (r.status === 401) { $('#login').hidden = false; throw new Error('PIN needed'); }
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+const post = (p, body) => api(p, { method: 'POST', body: JSON.stringify(body || {}) });
+const patch = (p, body) => api(p, { method: 'PATCH', body: JSON.stringify(body) });
+let toastT;
+function toast(msg, err) { const t = $('#toast'); t.textContent = msg; t.className = 'show' + (err ? ' err' : ''); clearTimeout(toastT); toastT = setTimeout(() => t.className = '', 2600); }
+function copy(text) {
+  const done = () => toast('Copied');
+  if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(text).then(done, fallback); } else fallback();
+  function fallback() { const t = h('textarea', { style: 'position:fixed;opacity:0' }); t.value = text; document.body.append(t); t.select(); try { document.execCommand('copy'); done(); } catch (e) { toast('Copy failed', true); } t.remove(); }
+}
+const statusClass = s => s.startsWith('Published') ? 'published' : s.startsWith('Ready') ? 'ready' : s.startsWith('Held') ? 'held' : 'draft';
+const statusLabel = s => s.replace('Held: medical review', 'Held: medical').replace('Ready (queued)', 'Ready').replace('Draft (hold)', 'Draft');
+const byId = id => S.posts.find(p => p.id === id) || S.reels.find(r => r.id === id);
+
+async function load() {
+  S = await api('/api/state');
+  const q = S.queue[0];
+  $('#next').textContent = q ? `Next: ${q.date} → ${q.id}` : 'Queue is empty';
+  render();
+}
+function render() {
+  const tabs = [['posts', 'Posts'], ['reels', 'Reels'], ['schedule', 'Schedule'], ['specs', 'Specs']];
+  $('#tabs').replaceChildren(...tabs.map(([k, l]) => h('button', { class: tab === k ? 'on' : '', onclick: () => { tab = k; render(); } }, l)));
+  const v = $('#view'); v.replaceChildren();
+  ({ posts: viewPosts, reels: viewReels, schedule: viewSchedule, specs: viewSpecs })[tab](v);
+}
+
+/* ------------------------------------------------------------ posts */
+function chipsFor(p) {
+  return [h('span', { class: 'chip ' + statusClass(p.status) }, statusLabel(p.status)), h('span', { class: 'chip' }, p.kind),
+    p.carousel && h('span', { class: 'chip car' }, 'carousel'), p.review && h('span', { class: 'chip med' }, 'medical')];
+}
+function viewPosts(v) {
+  const groups = [['all', 'All'], ['Ready', 'Ready'], ['Held', 'Held'], ['Draft', 'Draft'], ['Published', 'Published']];
+  const n = k => k === 'all' ? S.posts.length : S.posts.filter(p => p.status.startsWith(k)).length;
+  v.append(h('div', { class: 'filters' }, groups.map(([k, l]) => h('button', { class: 'chip' + (filter === k ? ' on' : ''), onclick: () => { filter = k; render(); } }, `${l} ${n(k)}`))));
+  const list = S.posts.filter(p => filter === 'all' || p.status.startsWith(filter));
+  v.append(h('div', { class: 'grid' }, list.map(p => h('article', { class: 'card', onclick: () => openPost(p.id) },
+    h('div', { class: 'thumb' }, h('img', { loading: 'lazy', src: `/api/preview/${p.id}.jpg?v=${p.v}`, alt: '' })),
+    h('div', { class: 'meta' }, h('div', { class: 'chips' }, h('span', { class: 'chip', style: 'font-weight:700' }, p.id), chipsFor(p)),
+      h('div', { class: 'title', dir: 'auto' }, p.card),
+      h('div', { class: 'snip', dir: 'auto' }, p.text.replace(/\n+/g, ' ')))))));
+}
+function closeModal() { $('#modal').hidden = true; $('#modal').replaceChildren(); openId = null; stopStory(); }
+function modal(title, chips, body) {
+  const m = $('#modal'); const keep = m.querySelector('.sheet') ? m.querySelector('.sheet').scrollTop : 0;
+  m.replaceChildren(h('div', { class: 'sheet' }, h('div', { class: 'sheet-head' }, h('h3', {}, title), chips, h('button', { class: 'iconbtn', onclick: closeModal }, '✕')), body));
+  m.hidden = false; m.querySelector('.sheet').scrollTop = keep;
+  m.onclick = e => { if (e.target === m) closeModal(); };
+}
+function openPost(id) { openId = id; showPost(id); }
+function showPost(id) {
+  const p = byId(id); const locked = p.status === 'Published';
+  const dis = locked ? { disabled: true } : {};
+  let timer;
+  const flagsBox = h('div', { class: 'flags' });
+  const showFlags = fl => flagsBox.replaceChildren(...(fl.length ? fl.map(f => h('div', { class: 'flag' }, f)) : [h('div', { class: 'ok' }, '✓ No Darija or style problems found (you still judge the Darija)')]));
+  showFlags(p.flags);
+  const ta = h('textarea', { dir: 'auto', lang: 'ar', ...dis }, p.text);
+  ta.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(async () => {
+      try { const np = await patch(`/api/post/${id}`, { text: ta.value }); Object.assign(p, np); showFlags(np.flags); $('.pv', $('#modal')).src = `/api/preview/${id}.jpg?v=${np.v}`; } catch (e) { toast(e.message, true); }
+    }, 700);
+  });
+  const act = async (fn, msg) => { try { await fn(); await load(); showPost(id); if (msg) toast(msg); } catch (e) { toast(e.message, true); } };
+  const field = (label, el) => h('label', { class: 'f' }, label, el);
+  const sel = (key, opts) => h('select', { ...dis, onchange: e => act(() => patch(`/api/post/${id}`, { [key]: key === 'framed' ? e.target.value === 'framed' : e.target.value })) },
+    opts.map(o => h('option', { value: o, selected: (key === 'framed' ? (p.framed ? 'framed' : 'full') : p[key]) === o }, o)));
+  const slidesBox = h('div', {});
+  const geminiBtn = h('button', { class: 'btn', ...dis, onclick: async e => {
+    const b = e.currentTarget; b.disabled = true; b.replaceChildren(h('span', { class: 'spin' }), 'Asking Gemini… (about 30 s)');
+    try {
+      const { job } = await post(`/api/gemini/${id}`);
+      for (;;) { await new Promise(r => setTimeout(r, 2500)); const j = await api(`/api/job/${job}`); if (j.state === 'done') break; if (j.state === 'error') throw new Error(j.message); }
+      await load(); showPost(id); toast('Gemini options ready');
+    } catch (err) { b.disabled = false; b.textContent = 'Ask Gemini for 3 options'; toast(err.message, true); }
+  } }, 'Ask Gemini for 3 options');
+  const useBtn = (src) => h('button', { class: 'btn ghost', ...dis, onclick: () => act(() => post(`/api/post/${id}/use`, { source: src }), 'Text updated') }, 'Use this');
+  const opts = [h('div', { class: 'opt' + (!p.text_source || p.text_source === 'Claude' ? ' cur' : '') }, h('b', {}, 'Claude' + (p.claude_text ? ' (original)' : ' (current)')),
+    h('pre', { dir: 'auto' }, p.claude_text || p.text), p.claude_text ? useBtn('Claude') : null),
+    ...p.gemini.map((g, i) => { const bad = g.startsWith('[!]'); const body = bad ? g.split('\n').slice(1).join('\n') : g;
+      return h('div', { class: 'opt' + (p.text_source === 'Gemini ' + (i + 1) ? ' cur' : '') }, h('b', {}, 'Gemini ' + (i + 1)), bad && h('div', { class: 'flag' }, g.split('\n')[0].slice(4)), h('pre', { dir: 'auto' }, body), useBtn('Gemini ' + (i + 1))); })];
+  const approved = !p.status.startsWith('Held');
+  let checked = false;
+  const medical = p.review && !locked && h('div', { class: 'banner' },
+    h('b', {}, 'Medical post. '), approved ? 'Approved: it is in the queue. ' : 'A doctor or midwife must check this text before it can go out. ',
+    approved ? h('button', { class: 'btn ghost', onclick: () => act(() => post(`/api/post/${id}/unapprove`), 'Held again') }, 'Hold again')
+      : h('div', { class: 'row', style: 'margin-top:8px' }, h('label', { style: 'display:flex;gap:6px;align-items:center' }, h('input', { type: 'checkbox', onchange: e => { checked = e.target.checked; $('#appr').disabled = !checked; } }), 'A doctor or midwife has checked it'),
+        h('button', { class: 'btn sage', id: 'appr', disabled: true, onclick: () => act(() => post(`/api/post/${id}/approve`), 'Approved') }, 'Approve')));
+  const hlBtn = h('button', { class: 'btn', ...dis, onclick: async e => {
+    const b = e.currentTarget; b.disabled = true; b.replaceChildren(h('span', { class: 'spin' }), 'Asking Gemini… (about 30 s)');
+    try { const { job } = await post(`/api/gemini/${id}`, { what: 'headlines' });
+      for (;;) { await new Promise(rs => setTimeout(rs, 2500)); const j = await api(`/api/job/${job}`); if (j.state === 'done') break; if (j.state === 'error') throw new Error(j.message); }
+      await load(); showPost(id); toast('Headline ideas ready'); } catch (er) { b.disabled = false; b.textContent = 'Ask Gemini for headline ideas'; toast(er.message, true); } } }, 'Ask Gemini for headline ideas');
+  const useHl = src => h('button', { class: 'btn ghost', ...dis, onclick: () => act(() => post(`/api/post/${id}/card/use`, { source: src }), 'Headline updated') }, 'Use this');
+  const changed = p.claude_card && p.claude_card !== p.card;
+  const hlOpts = [h('div', { class: 'opt' + (!p.card_source || p.card_source === 'Claude' || !changed ? ' cur' : '') }, h('b', {}, 'Claude' + (changed ? ' (original)' : ' (current)')),
+      h('div', { class: 'title', dir: 'auto' }, p.claude_card || p.card), changed ? useHl('Claude') : null),
+    ...p.headlines.map((g, i) => h('div', { class: 'opt' + (p.card_source === 'Gemini ' + (i + 1) ? ' cur' : '') }, h('b', {}, 'Gemini ' + (i + 1)), h('div', { class: 'title', dir: 'auto' }, g), useHl('Gemini ' + (i + 1))))];
+  const headlineBox = h('div', { class: 'box' }, h('h4', {}, 'Cover headline'),
+    h('input', { type: 'text', dir: 'auto', value: p.card, ...dis, onchange: e => act(() => patch(`/api/post/${id}`, { card: e.target.value })) }),
+    h('div', { class: 'stack', style: 'margin-top:10px' }, hlOpts),
+    h('div', { class: 'row', style: 'margin-top:8px' }, hlBtn, h('span', { class: 'chip' }, 'source: ' + (p.card_source || 'Claude'))),
+    h('p', { style: 'font-size:12px;color:var(--clay);margin-top:8px' }, 'Your original headline always stays. Gemini’s ideas are made from the text as it is now.'));
+  const fileIn = h('input', { type: 'file', accept: 'image/png,image/jpeg,image/webp', style: 'display:none', ...dis, onchange: e => upload(e.target.files[0]) });
+  const upload = async f => {
+    if (!f) return; const fd = new FormData(); fd.append('file', f);
+    try { toast('Uploading…'); await api(`/api/post/${id}/image`, { method: 'POST', body: fd }); await load(); showPost(id); toast('Picture saved'); } catch (e) { toast(e.message, true); }
+  };
+  const drop = h('div', { class: 'drop', ondragover: e => { e.preventDefault(); drop.classList.add('over'); }, ondragleave: () => drop.classList.remove('over'),
+    ondrop: e => { e.preventDefault(); drop.classList.remove('over'); upload(e.dataTransfer.files[0]); }, onclick: () => !locked && fileIn.click() },
+    p.has_user_image ? 'Your picture is used. Drop or tap to replace it.' : 'Drop your picture here, or tap to choose one', fileIn);
+  const body = h('div', { class: 'cols' },
+    h('div', { class: 'stack' }, h('img', { class: 'pv', alt: '', src: `/api/preview/${id}.jpg?v=${p.v}` }),
+      p.carousel && h('button', { class: 'btn ghost', onclick: async e => { e.currentTarget.remove(); const { keys } = await api(`/api/slides/${id}`);
+        slidesBox.replaceChildren(h('div', { class: 'slides' }, keys.map(k => h('img', { loading: 'lazy', alt: '', src: `/api/preview/${id}.jpg?v=${p.v}&slide=${k}` })))); } }, 'Show carousel slides (Instagram)'),
+      slidesBox,
+      h('details', {}, h('summary', {}, 'Facebook text'), h('pre', { dir: 'auto' }, p.fb_text)),
+      h('details', {}, h('summary', {}, 'Instagram caption'), h('pre', { dir: 'auto' }, p.ig_caption))),
+    h('div', { class: 'stack' }, medical,
+      locked && h('div', { class: 'banner' }, 'Published ' + (p.published_info ? p.published_info.at : '') + '. Published posts can’t be edited here.'),
+      h('div', { class: 'box' }, h('h4', {}, 'Text'), ta, flagsBox, h('div', { class: 'row', style: 'margin-top:8px' }, h('span', { class: 'chip' }, 'source: ' + (p.text_source || 'Claude')), geminiBtn)),
+      h('div', { class: 'box' }, h('h4', {}, 'Claude vs Gemini'), h('div', { class: 'stack' }, opts),
+        p.rewrite_prompt && h('details', { style: 'margin-top:8px' }, h('summary', {}, 'Rewrite prompt (to paste into Gemini yourself)'), h('div', { class: 'prompt' }, p.rewrite_prompt), h('button', { class: 'btn ghost', style: 'margin-top:6px', onclick: () => copy(p.rewrite_prompt) }, 'Copy'))),
+      h('div', { class: 'box' }, h('h4', {}, 'Picture'),
+        h('p', { style: 'font-size:13px;color:var(--clay);margin-bottom:8px' }, p.has_user_image ? 'Using your picture.' : 'Using the stock photo (Pixabay). Replace it with your Gemini picture:'), drop,
+        p.has_user_image && h('button', { class: 'btn ghost', style: 'margin-top:8px', ...dis, onclick: () => act(() => api(`/api/post/${id}/image`, { method: 'DELETE' }), 'Back to the stock photo') }, 'Remove my picture'),
+        p.image_prompt && h('div', { style: 'margin-top:10px' }, h('div', { style: 'font-size:12px;color:var(--clay);margin-bottom:4px' }, 'Gemini image prompt ' + (p.ai_label ? `(AI label: ${p.ai_label})` : '')),
+          h('div', { class: 'prompt' }, p.image_prompt), h('button', { class: 'btn ghost', style: 'margin-top:6px', onclick: () => copy(p.image_prompt) }, 'Copy prompt'))),
+      headlineBox,
+      h('div', { class: 'box' }, h('h4', {}, 'Design & status'), h('div', { class: 'row' },
+        
+        field('Layout', sel('framed', ['framed', 'full'])), field('Kind', sel('kind', ['list', 'reassure', 'personal', 'family', 'short', 'question']))),
+        h('div', { class: 'row', style: 'margin-top:10px' },
+          h('label', { style: 'display:flex;gap:6px;align-items:center' }, h('input', { type: 'checkbox', checked: p.review, ...dis, onchange: e => act(() => patch(`/api/post/${id}`, { review: e.target.checked })) }), 'Medical (needs a doctor’s check)'),
+          !locked && h('button', { class: 'btn ' + (p.hold ? 'sage' : 'warn'), onclick: () => act(() => patch(`/api/post/${id}`, { hold: !p.hold }), p.hold ? 'Released to the queue' : 'On hold') }, p.hold ? 'Release to queue' : 'Put on hold')),
+        (p.scheduled || p.notes) && h('p', { style: 'font-size:12px;color:var(--clay);margin-top:8px' }, [p.scheduled && 'Scheduled: ' + p.scheduled, p.notes].filter(Boolean).join(' · ')))));
+  modal(p.id + ' · ' + p.kind, chipsFor(p), body);
+}
+
+/* ------------------------------------------------------------ reels */
+function viewReels(v) {
+  v.append(h('p', { style: 'margin-bottom:12px;color:var(--clay)' }, 'Reels are ON HOLD (paused by the owner). Everything already built is kept, and nothing here is published or scheduled.'));
+  v.append(h('div', { class: 'grid' }, S.reels.map(r => h('article', { class: 'card', onclick: () => { openId = r.id; showReel(r.id); } },
+    h('div', { class: 'thumb reel', dir: 'auto' }, r.hook),
+    h('div', { class: 'meta' }, h('div', { class: 'chips' }, h('span', { class: 'chip', style: 'font-weight:700' }, r.id), h('span', { class: 'chip draft' }, r.status.startsWith('Draft') ? 'Draft' : r.status),
+      h('span', { class: 'chip' }, r.dur || ''), h('span', { class: 'chip' }, r.beats.filter(b => b.file).length + '/' + r.beats.length + ' clips')),
+      h('div', { class: 'title', dir: 'auto' }, r.topic.replace(/\(.*\)/, '')), h('div', { class: 'snip', dir: 'auto' }, r.caption.replace(/\n+/g, ' ')))))));
+}
+let storyToken = 0;
+function stopStory() { storyToken++; }
+async function playStory(r, box) {
+  const my = ++storyToken; box.replaceChildren();
+  const logo = h('img', { class: 'logo', alt: '', src: 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><path d="M21 60A40 40 0 0 0 98 64" fill="none" stroke="#FBF6EE" stroke-width="10" stroke-linecap="round"/><circle cx="44" cy="45" r="25" fill="#FBF6EE"/><circle cx="79" cy="61" r="12.5" fill="#FBF6EE"/></svg>') });
+  const steps = [{ t: r.hook, ms: 2000 }, ...r.beats.map(b => ({ t: b.text, f: b.file, ms: 3500 })), { t: r.closing, ms: 3000, last: true }];
+  for (const s of steps) {
+    if (my !== storyToken) return;
+    box.replaceChildren(logo.cloneNode());
+    let vid = null;
+    if (s.f) { vid = h('video', { src: `/media/reels/${s.f}`, muted: true, playsinline: true, autoplay: true }); box.prepend(vid); vid.play().catch(() => {}); }
+    else box.append(h('div', { class: 'card-text', dir: 'auto' }, s.t));
+    if (s.f) box.append(h('div', { class: 'ov', dir: 'auto' }, s.t));
+    if (s.last) box.append(h('div', { class: 'lock' }, 'أنا و وليدي'));
+    await new Promise(res => setTimeout(res, s.ms));
+  }
+}
+function showReel(id) {
+  const r = byId(id); const act = async (fn, msg) => { try { await fn(); await load(); showReel(id); if (msg) toast(msg); } catch (e) { toast(e.message, true); } };
+  const story = h('div', { class: 'story' }, h('div', { class: 'card-text', dir: 'auto' }, r.hook));
+  const up = (which, accept) => h('input', { type: 'file', accept, style: 'display:none', onchange: async e => { const f = e.target.files[0]; if (!f) return; const fd = new FormData(); fd.append('file', f);
+    try { toast('Uploading…'); await api(`/api/reel/${id}/clip/${which}`, { method: 'POST', body: fd }); await load(); showReel(id); toast('Clip saved'); } catch (er) { toast(er.message, true); } } });
+  const beats = r.beats.map((b, i) => { const inp = up(i + 1, 'video/*');
+    return h('div', { class: 'beat' }, h('b', {}, 'Beat ' + (i + 1)),
+      h('input', { type: 'text', dir: 'auto', value: b.text, onchange: e => act(() => patch(`/api/reel/${id}`, { beats: r.beats.map((x, j) => j === i ? { text: e.target.value } : {}) }), 'Saved') }),
+      h('div', { class: 'prompt' }, b.clip_prompt), h('div', { class: 'row' }, h('button', { class: 'btn ghost', onclick: () => copy(b.clip_prompt) }, 'Copy clip prompt'),
+        h('button', { class: 'btn ghost', onclick: () => inp.click() }, b.file ? 'Replace clip' : 'Upload clip'), b.file && h('button', { class: 'btn ghost', onclick: () => act(() => api(`/api/reel/${id}/clip/${i + 1}`, { method: 'DELETE' }), 'Clip removed') }, 'Remove'), inp),
+      b.file && h('video', { class: 'vid', src: `/media/reels/${b.file}`, controls: true, playsinline: true, preload: 'metadata' })); });
+  const finalIn = up('final', 'video/*');
+  const geminiBtn = h('button', { class: 'btn', onclick: async e => { const bt = e.currentTarget; bt.disabled = true; bt.replaceChildren(h('span', { class: 'spin' }), 'Asking Gemini…');
+    try { const { job } = await post(`/api/gemini/${id}`); for (;;) { await new Promise(rs => setTimeout(rs, 2500)); const j = await api(`/api/job/${job}`); if (j.state === 'done') break; if (j.state === 'error') throw new Error(j.message); } await load(); showReel(id); toast('Gemini options ready'); }
+    catch (er) { bt.disabled = false; bt.textContent = 'Ask Gemini for caption options'; toast(er.message, true); } } }, 'Ask Gemini for caption options');
+  const opts = [h('div', { class: 'opt' + (!r.caption_source || r.caption_source === 'Claude' ? ' cur' : '') }, h('b', {}, 'Claude'), h('pre', { dir: 'auto' }, r.claude_caption || r.caption), r.claude_caption ? h('button', { class: 'btn ghost', onclick: () => act(() => post(`/api/reel/${id}/use`, { source: 'Claude' }), 'Caption updated') }, 'Use this') : null),
+    ...r.gemini.map((g, i) => h('div', { class: 'opt' + (r.caption_source === 'Gemini ' + (i + 1) ? ' cur' : '') }, h('b', {}, 'Gemini ' + (i + 1)), h('pre', { dir: 'auto' }, g.replace(/^\[!\][^\n]*\n/, '')), h('button', { class: 'btn ghost', onclick: () => act(() => post(`/api/reel/${id}/use`, { source: 'Gemini ' + (i + 1) }), 'Caption updated') }, 'Use this')))];
+  const labels = { clips: 'From your clips', slideshow: 'Slideshow (our designs)', stock: 'Stock footage' };
+  const buildBtn = (src, text, enabled) => h('button', { class: 'btn ghost', disabled: !enabled, onclick: async e => {
+    const b = e.currentTarget; b.disabled = true; b.replaceChildren(h('span', { class: 'spin', style: 'border-color:var(--rose);border-top-color:transparent' }), 'Building…');
+    try { const { job } = await post(`/api/reel/${id}/build`, { source: src }); let j;
+      for (;;) { await new Promise(rs => setTimeout(rs, 2500)); j = await api(`/api/job/${job}`); if (j.state === 'done') break; if (j.state === 'error') throw new Error(j.message); }
+      await load(); showReel(id); toast(`Built: ${Math.round(j.seconds)} s`); } catch (er) { b.disabled = false; b.textContent = text; toast(er.message, true); } } }, text);
+  const versions = h('div', { class: 'box' }, h('h4', {}, 'Finished reels'),
+    h('div', { class: 'stack' }, Object.entries(r.variants).map(([src, file]) => h('div', { class: 'opt' + (r.chosen === src ? ' cur' : '') },
+      h('b', {}, labels[src] + (r.chosen === src ? '  ✓ chosen for publishing' : '')),
+      h('video', { class: 'vid', style: 'max-width:240px;display:block;margin:6px auto', src: `/media/out/${file}#t=1`, controls: true, playsinline: true, preload: 'metadata' }),
+      h('button', { class: 'btn ' + (r.chosen === src ? 'sage' : ''), onclick: () => act(() => post(`/api/reel/${id}/choose`, { source: src }), 'Chosen for publishing') }, r.chosen === src ? 'Chosen' : 'Use this one for publishing')))),
+    !Object.keys(r.variants).length && h('p', { style: 'font-size:13px;color:var(--clay);margin:6px 0' }, 'Nothing built yet. Pick a source below.'),
+    h('div', { class: 'row', style: 'margin-top:10px' }, buildBtn('clips', 'Build from my clips', true), buildBtn('slideshow', 'Build slideshow', r.has_slideshow), buildBtn('stock', 'Build with stock footage', r.has_stock)),
+    r.stock && r.stock.length ? h('p', { style: 'font-size:12px;color:var(--clay);margin-top:8px' }, 'Stock clips: ' + r.stock.map(x => `#${x.id} by ${x.by}`).join(', ') + ' (Pixabay, free to use).') : null);
+  const body = h('div', { class: 'cols' }, h('div', { class: 'stack' }, story, h('div', { class: 'row', style: 'justify-content:center' }, h('button', { class: 'btn', onclick: () => playStory(r, story) }, '▶ Play storyboard'), h('button', { class: 'btn ghost', onclick: () => { stopStory(); story.replaceChildren(h('div', { class: 'card-text', dir: 'auto' }, r.hook)); } }, 'Stop')),
+      h('p', { style: 'font-size:12px;color:var(--clay);text-align:center' }, 'Quick preview of your clips with the lines and logo.'),
+      versions),
+    h('div', { class: 'stack' },
+      h('div', { class: 'box' }, h('h4', {}, 'On-screen lines'), h('div', { class: 'row' },
+        h('label', { class: 'f' }, 'Hook (first 2 s)', h('input', { type: 'text', dir: 'auto', value: r.hook, onchange: e => act(() => patch(`/api/reel/${id}`, { hook: e.target.value }), 'Saved') })),
+        h('label', { class: 'f' }, 'Closing line (last 3 s)', h('input', { type: 'text', dir: 'auto', value: r.closing, onchange: e => act(() => patch(`/api/reel/${id}`, { closing: e.target.value }), 'Saved') }))),
+        h('p', { style: 'font-size:12px;color:var(--clay);margin-top:8px' }, `${r.dur} · 9:16, 1080x1920 · logo: ${r.logo} · music: ${r.music}`)),
+      h('div', { class: 'stack' }, beats),
+      h('div', { class: 'box' }, h('h4', {}, 'Caption'), h('div', { class: 'stack' }, opts), h('div', { class: 'row', style: 'margin-top:8px' }, geminiBtn),
+        h('div', { class: 'flags' }, r.flags.map(f => h('div', { class: 'flag' }, f)))),
+      h('div', { class: 'box' }, h('h4', {}, 'Finished video (optional)'), h('div', { class: 'row' }, h('button', { class: 'btn ghost', onclick: () => finalIn.click() }, r.final_file ? 'Replace finished video' : 'Upload a finished video'), finalIn,
+        r.final_file && h('button', { class: 'btn ghost', onclick: () => act(() => api(`/api/reel/${id}/clip/final`, { method: 'DELETE' }), 'Removed') }, 'Remove')),
+        r.final_file && h('video', { class: 'vid', style: 'max-width:200px;margin-top:8px', src: `/media/reels/${r.final_file}`, controls: true, playsinline: true }))));
+  modal(r.id + ' · ' + r.topic.replace(/\(.*\)/, ''), h('span', { class: 'chip draft' }, 'Draft'), body);
+}
+
+/* ------------------------------------------------------------ schedule */
+function viewSchedule(v) {
+  v.append(h('h2', {}, 'Publishing schedule'));
+  v.append(h('p', { style: 'margin-bottom:10px;color:var(--clay)' }, 'A scheduled task checks every 10 minutes and publishes what is due. Pick a date and time on any post to pin it (PC time). Posts without one fill the default slots (Mon, Wed, Fri, Sun at 20:30) in this order; use the arrows to change it. A day that already has a post gets no default slot.'));
+  const move = async (id, dir) => { try { await post('/api/queue/move', { id, dir }); await load(); } catch (e) { toast(e.message, true); } };
+  const setTime = async (id, at) => { try { await patch(`/api/post/${id}`, { publish_at: at }); toast(at ? 'Time saved' : 'Back to the default slot'); await load(); } catch (e) { toast(e.message, true); } };
+  const timeBox = (p, at) => h('span', { style: 'display:inline-flex;gap:6px;align-items:center', onclick: e => e.stopPropagation() },
+    h('input', { type: 'datetime-local', value: at || '', step: 60, style: 'font:inherit;padding:4px', onchange: e => e.target.value && setTime(p.id, e.target.value) }),
+    p.publish_at && h('button', { class: 'iconbtn', title: 'Back to the default slot', onclick: () => setTime(p.id, '') }, '✕'));
+  const loose = S.queue.filter(q => !q.pinned);
+  (S.missed || []).forEach(m => { const p = byId(m.id); v.append(h('div', { class: 'qrow' }, h('div', { class: 'd', style: 'color:var(--clay);font-weight:700' }, 'MISSED ' + m.date), h('div', { class: 't', dir: 'auto', onclick: () => openPost(p.id), style: 'cursor:pointer' }, p.id + ' · ' + p.card), timeBox(p, p.publish_at && p.publish_at.replace(' ', 'T')))); });
+  S.queue.forEach(q => { const p = byId(q.id), i = loose.indexOf(q); v.append(h('div', { class: 'qrow' }, h('div', { class: 'd' }, q.date, q.pinned && ' 📌'), h('img', { alt: '', src: `/api/preview/${p.id}.jpg?v=${p.v}` }),
+    h('div', { class: 't', dir: 'auto', onclick: () => openPost(p.id), style: 'cursor:pointer' }, p.id + ' · ' + p.card), timeBox(p, q.at),
+    !q.pinned && h('button', { class: 'iconbtn', disabled: i === 0, onclick: () => move(p.id, -1) }, '↑'), !q.pinned && h('button', { class: 'iconbtn', disabled: i === loose.length - 1, onclick: () => move(p.id, 1) }, '↓'))); });
+  if (!S.queue.length) v.append(h('p', {}, 'Nothing is queued.'));
+  const parked = S.posts.filter(p => /^(Held|Draft)/.test(p.status));
+  if (parked.length) { v.append(h('h2', { style: 'margin-top:22px' }, 'Not in the queue'));
+    parked.forEach(p => v.append(h('div', { class: 'qrow', onclick: () => openPost(p.id), style: 'cursor:pointer' }, h('div', { class: 'd' }, statusLabel(p.status)), h('img', { alt: '', src: `/api/preview/${p.id}.jpg?v=${p.v}` }), h('div', { class: 't', dir: 'auto' }, p.id + ' · ' + p.card), timeBox(p, p.publish_at && p.publish_at.replace(' ', 'T'))))); }
+  v.append(h('h2', { style: 'margin-top:22px' }, 'Proposed plan with reels (starts after the reels pipeline is tested)'));
+  v.append(h('div', { style: 'overflow-x:auto' }, h('table', {}, h('thead', {}, h('tr', {}, ['Date (20:30)', 'ID', 'Type', 'Notes'].map(t => h('th', {}, t)))),
+    h('tbody', {}, S.proposed.map(r => h('tr', { class: r.type === 'REEL' ? 'reel' : '' }, h('td', {}, r.date), h('td', {}, h('b', {}, r.id)), h('td', {}, r.type), h('td', {}, r.notes)))))));
+}
+function viewSpecs(v) {
+  v.append(h('h2', {}, 'Specs & rules'));
+  v.append(h('div', { style: 'overflow-x:auto' }, h('table', {}, h('tbody', {}, S.specs.map(s => h('tr', {}, h('td', { style: 'width:200px;font-weight:600' }, s.topic), h('td', {}, s.value)))))));
+}
+
+$('#refresh').onclick = () => load().then(() => { if (openId) { const m = byId(openId); if (m) (openId[0] === 'r' ? showReel : showPost)(openId); } toast('Refreshed'); }).catch(e => toast(e.message, true));
+$('#loginform').onsubmit = async e => { e.preventDefault(); try { await post('/api/login', { pin: $('#pin').value }); $('#login').hidden = true; await load(); } catch (er) { toast('Wrong PIN', true); } };
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#modal').hidden) closeModal(); });
+load().catch(() => {});
+</script>
+</body>
+</html>

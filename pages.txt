@@ -1,0 +1,27 @@
+# Pages to scrape, one facebook url per line. Lines starting with # are skipped.
+# Run them with: python run_pages.py   (output goes to data/<name>.jsonl)
+# Saved posts are skipped, so rerunning only fetches what is missing.
+
+# done, 1404 posts (clean_data.py removed duplicates)
+# https://www.facebook.com/Mezouar1pediatre1mostaganem
+# https://www.facebook.com/midwiferyart
+# https://www.facebook.com/i3lamiomi
+
+# New-style pages, their posts are photo links.
+# https://www.facebook.com/profile.php?id=100089064860129
+# done (1861 posts)
+# https://www.facebook.com/profile.php?id=100051200463767
+# done (60 posts)
+# https://www.facebook.com/profile.php?id=61566569038297
+# done (14 posts)
+# https://www.facebook.com/profile.php?id=61587908703488
+
+# Added 2026-10-22. The two doctor pages are probably Egyptian Arabic: use them for topics and
+# structure only, never for wording (posts must be Algerian Darija).
+# done (66 posts)
+# https://www.facebook.com/dr.hatemfarouk
+# done (107 posts)
+# https://www.facebook.com/Dr.Mai.Alkosairy.kids.Clinic
+# skipped: login wall on two runs (2026-10-22, 2026-10-23), 0 posts
+# https://www.facebook.com/profile.php?id=100050299959756
+https://www.facebook.com/profile.php?id=61577710871613

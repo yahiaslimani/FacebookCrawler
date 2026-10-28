@@ -11,6 +11,10 @@ from scrapy_playwright.page import PageMethod
 # session cookies.
 AUTH_FILE = "auth.json"
 
+# A logged-in Facebook page never settles, so waiting for the load
+# event times out. Return at DOM ready and let the page methods wait.
+GOTO_KWARGS = {"wait_until": "domcontentloaded"}
+
 
 class FbBaseSpider(Spider):
     """Base spider holding the Playwright session."""
@@ -40,12 +44,19 @@ class FbBaseSpider(Spider):
             meta={
                 "playwright": True,
                 "playwright_context_kwargs": {"storage_state": AUTH_FILE},
+                "playwright_page_goto_kwargs": GOTO_KWARGS,
             },
         )
 
-    def parse_page(self, response: Response, **_kwargs: Any) -> Any:
+    async def parse_page(self, response: Response, **_kwargs: Any) -> Any:
         """Parse one timeline page. Implemented by subclasses."""
         raise NotImplementedError
+
+    async def close_page(self, failure: Any) -> None:
+        """Close the Playwright page of a failed timeline request."""
+        page = failure.request.meta.get("playwright_page")
+        if page:
+            await page.close()
 
     def parse(self, response: Response, **_kwargs: Any) -> Any:
         """Fan out one timeline request per page id."""
@@ -54,11 +65,13 @@ class FbBaseSpider(Spider):
         for page_id in self.page_id:
             url = self.base_url + page_id
             yield Request(
-                url=url, callback=self.parse_page,
+                url=url, callback=self.parse_page, errback=self.close_page,
                 meta={
                     "page_id": page_id,
                     "playwright": True,
+                    "playwright_include_page": True,
                     "playwright_context_kwargs": {"storage_state": AUTH_FILE},
+                    "playwright_page_goto_kwargs": GOTO_KWARGS,
                     "playwright_page_methods": [
                         PageMethod("wait_for_timeout", 2000),
                     ],

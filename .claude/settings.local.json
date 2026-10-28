@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Register-ScheduledTask:*)",
+      "PowerShell(Set-ScheduledTask:*)",
+      "PowerShell(Disable-ScheduledTask:*)",
+      "PowerShell(Enable-ScheduledTask:*)",
+      "PowerShell(Start-ScheduledTask:*)",
+      "PowerShell(Unregister-ScheduledTask:*)",
+      "PowerShell(New-ScheduledTask*:*)",
+      "PowerShell(Get-ScheduledTask*:*)"
+    ]
+  }
+}

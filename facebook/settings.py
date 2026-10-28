@@ -70,9 +70,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "facebook.pipelines.FacebookPipeline": 300,
-#}
+ITEM_PIPELINES = {
+    "facebook.pipelines.FacebookPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -109,3 +109,15 @@ DOWNLOAD_HANDLERS = {
 }
 PLAYWRIGHT_CONNECT_URL = "ws://localhost:3000/"
 PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 30 * 1000
+
+# Every request is a heavy page in one shared remote browser. Many at
+# once make navigations time out, so keep few pages open and retry.
+CONCURRENT_REQUESTS = 2
+CONCURRENT_REQUESTS_PER_DOMAIN = 2
+# One page stays on the timeline while two scrape posts.
+PLAYWRIGHT_MAX_PAGES_PER_CONTEXT = 3
+RETRY_TIMES = 2
+RETRY_EXCEPTIONS = [
+    "playwright._impl._errors.TimeoutError",
+    "playwright._impl._errors.Error",
+]
